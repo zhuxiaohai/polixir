@@ -1,0 +1,64 @@
+metadata:
+  graph:
+    action_1:
+    - state
+    action_2:
+    - state
+    - action_1
+    next_state:
+    - state
+    - action_2
+    # - action_1 # Uncomment to introduce coupon action to user state computation
+  columns:
+  - total_num:
+      dim: state
+      # type: discrete
+      # num: 181
+      type: continuous
+      min: 0
+      max: 180
+  - average_num:
+      dim: state
+      type: continuous
+      min: 0
+      max: 6
+  - average_fee:
+      dim: state
+      type: continuous
+      min: 0
+      max: 100
+  - day_deliver_coupon_num:
+      dim: action_1
+      # type: discrete
+      # num: 6
+      type: continuous
+      min: 0
+      max: 5
+      # type: category
+      # values: [0, 1, 2, 3, 4, 5]
+  - coupon_discount:
+      dim: action_1
+      # type: discrete
+      # num: 8
+      type: continuous
+      min: 0.6
+      max: 0.95
+      # type: category
+      # values: [0.95, 0.90, 0.85, 0.80, 0.75, 0.70, 0.65, 0.60]
+  - day_order_num:
+      dim: action_2
+      # type: discrete
+      # num: 7
+      type: continuous
+      min: 0
+      max: 6
+      # type: category
+      # values: [0, 1, 2, 3, 4, 5, 6]
+  - day_average_order_fee:
+      dim: action_2
+      type: continuous
+      min: 0
+      max: 100
+  expert_functions:
+    next_state:
+      'node_function' : 'venv.get_next_state'
